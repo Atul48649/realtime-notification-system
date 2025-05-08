@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Notifications</title>
+</head>
+
+<body>
+    <h2>Notifications:</h2>
+    <div id="notifs"></div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        console.log("script loaded");
+        // const userId = '2';
+
+
+        const userId = '2'; // Simulate login as user with ID 2
+        const socket = io('http://localhost:3000');
+
+        socket.emit('register', userId);
+
+        socket.on('notification', (data) => {
+            const div = document.createElement('div');
+            div.textContent = data.message;
+            document.getElementById('notifs').appendChild(div);
+        });
+
+
+    </script>
+</body>
+
+</html>
